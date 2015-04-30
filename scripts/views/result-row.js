@@ -24,7 +24,6 @@ var resultsRow = Backbone.View.extend({
 
     initialize: function(options) {
         this.options = _.defaults({}, options, this.defaults);
-        console.log(this.options);
         this.render();
     },
 

@@ -18,17 +18,11 @@ var resultsTable = Backbone.View.extend({
 
     initialize: function(options) {
         this.options = _.defaults({}, options, this.defaults);
-
         this.render();
     },
 
     render: function() {
         this.$el.html(this.template(this.options));
-
-        for (var row in this.options) {
-            var tmp = new resultRow(this.options[row]);
-        }
-
         return this;
     }
 });
