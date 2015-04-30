@@ -150,11 +150,13 @@ var calculator = Backbone.View.extend({
         var remainingBalance = this.amount;
         var totalInterestPaid = 0;
         var monthlyInterest = 0;
+        var dailyInterestRate = (this.interestRate / 100) / 365;
         this.paymentData = [];
 
         for (var numberOfMonths = 1; remainingBalance > this.paymentAmount; numberOfMonths++) {
             // 1. Figure out how much interest you owe this month
-            monthlyInterest = (remainingBalance * (this.interestRate / 100) / 12);
+            interestMultiplier = this.daysInMonth(this.year, this.month) * dailyInterestRate;
+            monthlyInterest = (remainingBalance * interestMultiplier);
 
             // If your monthly payment amount won't even cover interest,
             // you'll never pay things off, and we'll enter an infinite loop.
@@ -162,7 +164,7 @@ var calculator = Backbone.View.extend({
             //
             // This only matters the first iteration through the loop
             if (monthlyInterest > this.paymentAmount) {
-                // Alerts are gross. I should do this with Backbone or something
+                // Alerts are gross. I should do this with Bootstrap or something
                 alert('Whoa, partner. You\'ll never pay off your loan at that rate.');
                 return;
             }
