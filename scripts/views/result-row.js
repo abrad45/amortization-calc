@@ -7,7 +7,13 @@ var Numeral = require('numeral');
 var template = require('../templates/result-row.tpl');
 
 var resultsRow = Backbone.View.extend({
-    el: '.month-results',
+    tagName: 'tr',
+
+    attributes: function() {
+        return {
+            class: 'payment month-' + this.model.get('monthNumber')
+        };
+    },
 
     template: template,
 
@@ -23,13 +29,11 @@ var resultsRow = Backbone.View.extend({
     },
 
     initialize: function(options) {
-        this.options = _.defaults({}, options, this.defaults);
-        this.render();
+        this.options = _.defaults({}, this.model.toJSON(), this.defaults);
     },
 
     render: function() {
-        var row = this.template(this.options);
-        this.$el.append(row);
+        this.$el.html(this.template(this.options));
         return this;
     }
 });

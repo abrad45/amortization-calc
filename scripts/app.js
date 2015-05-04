@@ -11,4 +11,5 @@ $(function () {
     // };
 
     var app = new Calculator(bootstrap);
+    $('.fields-container').append(app.render().el);
 });
