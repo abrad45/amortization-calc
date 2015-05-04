@@ -1,6 +1,8 @@
 # Amortization Calculator
 
-When are you going to pay off your student loan? How much could you save if you just paid $25 or $50 more a month? Arm yourself with the knowledge you need to quickly pay off your student loans with this amortization (loan payoff) calculator.
+When are you going to pay off your student loan? How much could you save if you just paid $25 or $50 more a month? Arm yourself with the knowledge you need to quickly pay off your student loans with this amortization (loan payoff) calculator. All you need to know is the amount of your loan, your interest rate and your monthly payment. You can modify your monthly payment to see how much interest you'll save by paying off more quickly, or reduce your interest rate to see how a refinance would help.
+
+![](screenshot.png)
 
 ## Notes about Calculations
 
