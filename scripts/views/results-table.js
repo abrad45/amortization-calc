@@ -10,7 +10,7 @@ var resultRow = require('./result-row.js');
 var template = require('../templates/results-table.tpl');
 
 var resultsTable = Backbone.View.extend({
-    el: '.amore-results-display',
+    className: 'amore-results-display',
 
     template: template,
 
@@ -18,7 +18,6 @@ var resultsTable = Backbone.View.extend({
 
     initialize: function(options) {
         this.options = _.defaults({}, options, this.defaults);
-        this.render();
     },
 
     render: function() {

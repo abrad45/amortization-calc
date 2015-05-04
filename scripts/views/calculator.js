@@ -18,7 +18,7 @@ var Payments = require('../collections/payments.js');
 var template = require('../templates/inputs.tpl');
 
 var calculator = Backbone.View.extend({
-    el: '.amore-calculator',
+    className: 'amore-calculator',
 
     template: template,
 
@@ -43,19 +43,13 @@ var calculator = Backbone.View.extend({
 
         this.collection = new Payments();
         this.listenTo(this.collection, 'reset', this.renderPaymentRows);
-
-        this.render();
-
-        // We have to render the fields first, or else it's
-        // really hard to cache selectors to them ;)
-        this.assignVariables();
     },
 
     /**
      * Let's cache / prep some stuff! This prepares some local
      * variables so we don't have to look them up twice.
      */
-    assignVariables: function() {
+    cacheSelectors: function() {
         // Form fields
         this.$amount = this.$el.find('.loan-amount');
         this.$interestRate = this.$el.find('.interest-rate');
@@ -239,19 +233,38 @@ var calculator = Backbone.View.extend({
      */
     render: function() {
         this.$el.html(this.template(this.options));
+
+        // Now that the fields are rendered, let's
+        // cache selectors to a bunch of 'em
+        this.cacheSelectors();
+
+        this.$resultsContainer = $('.results-container');
         this.resultsTable = new ResultsTable();
+
+        this.$resultsContainer.append(this.resultsTable.render().el);
+        this.$resultsRowsContainer = $('.month-results');
+
         return this;
     },
 
     /**
-     * Clears out the payments table and renders new rows inside it
+     * Clears out the payments table, then adds rows to `rows`
+     * and renders them all once at the end for performance
      */
-    renderPaymentRows: function(payment) {
-        this.resultsTable.render();
+    renderPaymentRows: function() {
+        this.$resultsRowsContainer.html();
+        var rows = document.createDocumentFragment();
+
         this.collection.forEach(function(payment) {
-            new ResultRow(payment.toJSON());
+            console.log(payment);
+            var row = new ResultRow({ model: payment });
+            if (row.render().el) {
+                rows.appendChild(row.render().el);
+            }
         });
-    },
+
+        this.$resultsRowsContainer.append(rows);
+    }
 });
 
 module.exports = calculator;
