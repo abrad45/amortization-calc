@@ -171,6 +171,9 @@ var calculator = Backbone.View.extend({
 
             // Log all the things!
             totalInterestPaid += monthlyInterest;
+
+            // @todo it'd be cool to compose this in one place rather than in two
+            //      it's also below in calculateFinalPayment() :/
             currentMonthData = {
                 'monthNumber': (1 + this.month),
                 'paymentNumber': numberOfMonths,
@@ -252,11 +255,10 @@ var calculator = Backbone.View.extend({
      * and renders them all once at the end for performance
      */
     renderPaymentRows: function() {
-        this.$resultsRowsContainer.html();
+        this.$resultsRowsContainer.html('');
         var rows = document.createDocumentFragment();
 
         this.collection.forEach(function(payment) {
-            console.log(payment);
             var row = new ResultRow({ model: payment });
             if (row.render().el) {
                 rows.appendChild(row.render().el);
