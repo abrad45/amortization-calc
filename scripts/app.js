@@ -1,15 +1,10 @@
-var $ = require('jquery');
-var Calculator = require('./views/calculator.js');
+var Router = require('./routers/router.js');
+var Backbone = require('backbone');
 
-$(function () {
-    // Wanna always run this with the same starting values? Override `bootstrap`!
-    var bootstrap = {};
-    // var bootstrap = {
-    //     'amount': 13918.84,
-    //     'interestRate': 6,
-    //     'paymentAmount': 400
-    // };
+/**
+ * The fun starts here...
+ */
 
-    var app = new Calculator(bootstrap);
-    $('.fields-container').append(app.render().el);
-});
+var router = new Router();
+
+Backbone.history.start();
