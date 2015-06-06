@@ -5,8 +5,8 @@ var Backbone = require('backbone');
 Backbone.$ = $;
 
 // Views
-var Amortization = require('../views/calculator.js');
-var WeightedInterest = require('../views/weighted-interest.js');
+var Amortization = require('./amortization/views/calculator.js');
+var WeightedInterest = require('./weighted-interest/views/weighted-interest.js');
 
 var router = Backbone.Router.extend({
     routes: {
@@ -16,6 +16,11 @@ var router = Backbone.Router.extend({
     },
 
     initialize: function() {
+        this.$fieldsContainer = $('.fields-container');
+        this.$resultsContainer = $('.results-container');
+    },
+
+    renderAmortization: function() {
         // Wanna always run this with the same starting values? Override `bootstrap`!
         var bootstrap = {};
         // var bootstrap = {
@@ -24,22 +29,16 @@ var router = Backbone.Router.extend({
         //     'paymentAmount': 400
         // };
 
-        this.amortizationView = new Amortization(bootstrap);
-
-        this.weightedInterestView = new WeightedInterest();
-
-        this.$fieldsContainer = $('.fields-container');
-        this.$resultsContainer = $('.results-container');
-    },
-
-    renderAmortization: function() {
-        this.$fieldsContainer.html(this.amortizationView.render().el);
+        var amortizationView = new Amortization(bootstrap);
+        this.$fieldsContainer.html(amortizationView.render().el);
     },
 
     renderWeightedInterest: function() {
+        var weightedInterestView = new WeightedInterest();
+
         // @todo this is hacky and should be done with a teardown call in calculator.js
         this.$resultsContainer.html('');
-        this.$fieldsContainer.html(this.weightedInterestView.render().el);
+        this.$fieldsContainer.html(weightedInterestView.render().el);
     }
 });
 

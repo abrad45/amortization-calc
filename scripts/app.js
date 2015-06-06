@@ -1,4 +1,4 @@
-var Router = require('./routers/router.js');
+var Router = require('./router.js');
 var Backbone = require('backbone');
 
 /**

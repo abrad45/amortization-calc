@@ -72,9 +72,6 @@ var weightedInterest = Backbone.View.extend({
      * Draw a container for some rows to be put into.
      */
     render: function() {
-        console.log(this.$el.length, this.template(this.options));
-
-        // @todo bug with rendering when switching back and forth repeatedly.
         this.$el.html(this.template(this.options));
 
         // Now that the fields are rendered, let's

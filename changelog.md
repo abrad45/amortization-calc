@@ -1,6 +1,13 @@
 # Changelog
 
-## 1.3
+## 1.4 (6 June 2015)
+
+* Restructured `/scripts` folder, organized by module rather than code. For instance, `views/` was split into `weighted-interest/views` and `amortization/views`.
+* Removed a lingering `console.log()`.
+* Fixed a rendering bug that prevented event handlers from firing due to cached views.
+* Added release dates to this changelog.
+
+## 1.3 (6 June 2015)
 
 Major new features and code restructure
 
@@ -8,21 +15,21 @@ Major new features and code restructure
 * Added a whole new calculator, the **Weighted Interest Calculator** at `#weighted-interest` which helps you figure out your interest rate.
 * Also added this changelog.
 
-## 1.2
+## 1.2 (30 May 2015)
 
 Fixed a bug that caused additional calculations after the first to append the new set of rows to the bottom of the table rather than reset the table first.
 
-## 1.1
+## 1.1 (4 May 2015)
 
 * Optimized payment row rendering performance
 * Changed how and when views are rendered.
 
-## 1.0
+## 1.0 (30 April 2015)
 
 Inadvertently silent release (I forgot to update `package.json` so nowhere in the version history does it ever read `1.0`)
 
 * Interest is calculated to make it more accurate.
 
-## 0.9
+## 0.9 (30 April 2015)
 
 First public release
