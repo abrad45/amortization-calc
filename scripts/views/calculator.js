@@ -244,7 +244,7 @@ var calculator = Backbone.View.extend({
         this.$resultsContainer = $('.results-container');
         this.resultsTable = new ResultsTable();
 
-        this.$resultsContainer.append(this.resultsTable.render().el);
+        this.$resultsContainer.html(this.resultsTable.render().el);
         this.$resultsRowsContainer = $('.month-results');
 
         return this;

@@ -2,6 +2,32 @@
  * This is hilarious. Thanks, Bootstrap!
  */
 
+// Table
 .month-12 {
     border-bottom: 3px solid gray;
+}
+
+// Interest Rate Inline Form
+.form-inline {
+    margin-bottom: .5em;
+
+    .form-group,
+    .form-group .control-label {
+        margin-right: 1em;
+    }
+}
+
+.button-add-loan {
+    display: none;
+}
+
+.interest-row:last-child {
+
+    & .button-add-loan {
+        display: inline-block;
+    }
+
+    & .and {
+        display: none;
+    }
 }
