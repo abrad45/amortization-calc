@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.5 (7 June 2015)
+
+* Made a `gh-pages` branch to display this to the world. Added a link to it in `readme.md`
+* Removed a few @todo directives which have already been logged in the Issues section of this repo.
+* Fixed Issue #8 which pertained to compounding interest calculations
+
 ## 1.4 (6 June 2015)
 
 * Restructured `/scripts` folder, organized by module rather than code. For instance, `views/` was split into `weighted-interest/views` and `amortization/views`.
