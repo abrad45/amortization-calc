@@ -145,28 +145,34 @@ var calculator = Backbone.View.extend({
         var totalInterestPaid = 0;
         var monthlyInterest = 0;
         var dailyInterestRate = (this.interestRate / 100) / 365;
+        var daysInMonth = 0;
         this.paymentData = [];
 
         for (var numberOfMonths = 1; remainingBalance > this.paymentAmount; numberOfMonths++) {
             // 1. Figure out how much interest you owe this month
-            interestMultiplier = this.daysInMonth(this.year, this.month) * dailyInterestRate;
-            monthlyInterest = (remainingBalance * interestMultiplier);
+            monthlyInterest = 0;
+            daysInMonth = this.daysInMonth(this.year, this.month);
+            // 1a. For each day in the month...
+            for (var day = 0; day < daysInMonth; day++) {
+                // 1b. Figure out the interest for the day
+                var dailyInterest = remainingBalance * dailyInterestRate;
+                // 1c. Add that interest amount to the monthlyInterst counter
+                monthlyInterest += dailyInterest;
+                // 1d. Add that interest amount to the remainingBalance, too, so it compounds daily
+                remainingBalance += dailyInterest;
+            }
 
-            // If your monthly payment amount won't even cover interest,
+            // 2. If your monthly payment amount won't even cover interest,
             // you'll never pay things off, and we'll enter an infinite loop.
             // This prevents a browser crash by bailing out.
             //
             // This only matters the first iteration through the loop
             if (monthlyInterest > this.paymentAmount) {
-                // Alerts are gross. I should do this with Bootstrap or something
                 alert('Whoa, partner. You\'ll never pay off your loan at that rate.');
                 return;
             }
 
-            // 2. Add it to your remainingBalance
-            remainingBalance += monthlyInterest;
-
-            // 2. Make a payment, reducing your remainingBalance by your paymentAmount
+            // 3. Make a payment, reducing your remainingBalance by your paymentAmount
             remainingBalance -= this.paymentAmount;
 
             // Log all the things!
