@@ -79,7 +79,9 @@ var weightedInterest = Backbone.View.extend({
         this.cacheSelectors();
 
         // Let's start with 3 fields.
-        _.times(3, this.renderInterestRow, this);
+        this.renderInterestRow();
+        this.renderInterestRow();
+        this.renderInterestRow();
 
         return this;
     },

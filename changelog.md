@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.6 (10 February 2018)
+
+* Updated most packages to newer versions.
+* Fixed an issue in `weighted-interest.js` related to a `lodash` change `_.times`. In v 3.10.1, `_.times` supported an optional third argument `thisArg` which it no longer does in v 4.17.5.
+* Better split `dependencies` and `dev-dependencies` in `package.json`.
+* Added `npm run clean` command for nuking `./node_modules` folder and reinstalling all packages.
+
 ## 1.5 (7 June 2015)
 
 * Made a `gh-pages` branch to display this to the world. Added a link to it in `readme.md`
