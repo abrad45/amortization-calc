@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.7 (10 February 2018)
+
+* Updated additional packages due to Github vulnerability alert.
+* Removed linting from the project.
+
 ## 1.6 (10 February 2018)
 
 * Updated most packages to newer versions.
